@@ -38,7 +38,7 @@ REST API построено на современном стеке Java + Spring
 #### 1. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/your-repo/back_healthy_food_app.git
+git clone https://github.com/benchPressForever/backend_kyrsach
 cd back_healthy_food_app
 ```
 
