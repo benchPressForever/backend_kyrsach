@@ -39,7 +39,7 @@ REST API построено на современном стеке Java + Spring
 
 ```bash
 git clone https://github.com/benchPressForever/backend_kyrsach
-cd back_healthy_food_app
+cd backend_kyrsach
 ```
 
 #### 2. Запустите PostgreSQL через Docker Compose
