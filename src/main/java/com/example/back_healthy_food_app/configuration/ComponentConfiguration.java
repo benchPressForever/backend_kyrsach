@@ -1,10 +1,9 @@
 package com.example.back_healthy_food_app.configuration;
 
 
-import com.example.back_healthy_food_app.api.controller.FoodController;
-import com.example.back_healthy_food_app.model.FoodScenario;
-import com.example.back_healthy_food_app.storage.FoodRepository;
-import com.example.back_healthy_food_app.storage.RdbFoodStorage;
+import com.example.back_healthy_food_app.food.model.FoodScenario;
+import com.example.back_healthy_food_app.food.storage.FoodRepository;
+import com.example.back_healthy_food_app.food.storage.RdbFoodStorage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,4 +1,4 @@
-package com.example.back_healthy_food_app.api.message;
+package com.example.back_healthy_food_app.message;
 
 public class CommonApiMessages {
 

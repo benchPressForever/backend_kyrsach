@@ -1,8 +1,8 @@
 package com.example.back_healthy_food_app.api.controller;
 
 
-import com.example.back_healthy_food_app.api.message.CommonApiMessages.StringMessage;
-import com.example.back_healthy_food_app.api.message.CommonApiMessages.StatusMessage;
+import com.example.back_healthy_food_app.message.CommonApiMessages.StringMessage;
+import com.example.back_healthy_food_app.message.CommonApiMessages.StatusMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
