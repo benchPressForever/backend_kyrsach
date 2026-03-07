@@ -18,4 +18,5 @@ public interface FoodRepository extends JpaRepository<FoodDBEntity,String> {
     Optional<FoodDBEntity> findByName(String name);
 
 
+
 }
