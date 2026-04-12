@@ -1,28 +1,44 @@
 package com.example.back_healthy_food_app.meal_food.controller;
 
-import com.example.back_healthy_food_app.food.model.Food;
-import com.example.back_healthy_food_app.food.model.FoodScenario;
-import com.example.back_healthy_food_app.meal_food.model.MealFood;
-import com.example.back_healthy_food_app.meal_food.model.MealFoodScenario;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.meal_food.dto.MealFoodRequest;
+import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
+import com.example.back_healthy_food_app.meal_food.dto.UpdateDtoMealFood;
+import com.example.back_healthy_food_app.meal_food.service.MealFoodService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("api/meal_food")
 public class MealFoodController {
 
-    private final MealFoodScenario scenario;
+    private final MealFoodService service;
 
-    public MealFoodController(MealFoodScenario scenario) {
-        this.scenario = scenario;
+    public MealFoodController(MealFoodService service) {
+        this.service = service;
     }
 
     @GetMapping("{id}")
-    public MealFood get(@PathVariable String id){
-        return scenario.getById(id);
+    public MealFoodResponse get(@PathVariable String id){
+        return service.get(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MealFoodResponse create(@RequestBody MealFoodRequest mealFood){
+        return service.save(mealFood);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String id){
+        service.delete(id);
+    }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MealFoodResponse update(@PathVariable String id,@RequestBody UpdateDtoMealFood dto){
+        return service.update(id,dto);
     }
 }

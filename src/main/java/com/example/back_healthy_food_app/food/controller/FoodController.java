@@ -1,56 +1,55 @@
 package com.example.back_healthy_food_app.food.controller;
 
 
-import com.example.back_healthy_food_app.food.model.Food;
-import com.example.back_healthy_food_app.food.model.FoodScenario;
+import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.food.service.FoodService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/food")
 public class FoodController {
 
-    private final FoodScenario scenario;
+    private final FoodService service;
 
-    public FoodController(FoodScenario scenario){
-        this.scenario = scenario;
+    public FoodController(FoodService service){
+        this.service = service;
     }
 
     @GetMapping
     public List<Food> getAllByName(String name,Integer page, Integer limit){
-        return scenario.GetByName(name,page,limit);
+        return service.searchAllByName(name,page,limit);
     }
 
     @GetMapping("{id}")
     public Food getById(@PathVariable String id){
-        return scenario.getById(id);
+        return service.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Food food){
-        scenario.store(food);
+    public Food create(@RequestBody Food food){
+        return service.insert(food);
     }
 
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable String id,@RequestBody Food food){
-        scenario.update(id,food);
+    public Food update(@PathVariable String id,@RequestBody Food food){
+        return service.update(id,food);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String id){
-        scenario.delete(id);
+        service.delete(id);
     }
 
     @PostMapping("{list}")
     @ResponseStatus(HttpStatus.OK)
-    public void createMany(@RequestBody  List<Food> foods){
-        scenario.createMany(foods);
+    public List<Food> createMany(@RequestBody  List<Food> foods){
+        return service.createMany(foods);
     }
 
 

@@ -1,29 +1,32 @@
-package com.example.back_healthy_food_app.food.model;
+package com.example.back_healthy_food_app.food.service;
+
+import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
+import jakarta.persistence.Entity;
 
 import java.util.List;
-import java.util.Optional;
 
 // FoodStorage - интерфейс хранилища стран
-public interface FoodStorage {
+public interface IFoodService {
 
     //searchByName - получение по имени с пагинацией
     List<Food> searchAllByName(String name, Integer page, Integer limit);
 
     //getById - получение по id
-    Optional<Food> getById(String id);
+    Food getById(String id);
 
-    //getByName - получение по имени
-    Optional<Food> getByName(String name);
+    //getById - получение Entity сущности по id
+    FoodDBEntity getEntityById(String id);
 
     //insert - добавление продукта
-    void insert(Food food);
+    Food insert(Food food);
 
     //update - обновление по id
-    void update(String id,Food food);
+    Food update(String id,Food food);
 
     //delete - удаление по id
     void delete(String id);
 
     //createMany - создание списка продуктов
-    void createMany(List<Food> foods);
+    List<Food> createMany(List<Food> foods);
 }

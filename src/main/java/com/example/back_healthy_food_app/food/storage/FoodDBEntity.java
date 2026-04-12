@@ -1,9 +1,13 @@
 package com.example.back_healthy_food_app.food.storage;
 
 
-import com.example.back_healthy_food_app.food.model.Food;
+import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "food")
@@ -28,6 +32,22 @@ public class FoodDBEntity {
 
     @Column(name="carbs_per_100",nullable = false,columnDefinition = "FLOAT DEFAULT 0.0")
     private Double carbsPer100;
+
+    @OneToMany(mappedBy = "food",
+                cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY,
+                orphanRemoval = true)
+    private List<MealFoodEntity> mealFoods = new ArrayList<>();
+
+    public void addMealFood(MealFoodEntity mealFood) {
+        mealFoods.add(mealFood);
+        mealFood.setFood(this);  // Синхронизация обратной стороны
+    }
+
+    public void removeMealFood(MealFoodEntity mealFood) {
+        mealFoods.remove(mealFood);
+        mealFood.setFood(null);
+    }
 
     public FoodDBEntity() {}
 
