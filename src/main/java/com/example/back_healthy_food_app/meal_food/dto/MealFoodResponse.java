@@ -33,7 +33,6 @@ public class MealFoodResponse {
         if(food != null) {
             this.foodId = food.getId();
             this.foodName = food.getName();
-
             this.calories = (food.getCaloriesPer100() != null ? food.getCaloriesPer100() : 0.0) * multiplier;
             this.protein = (food.getProteinPer100() != null ? food.getProteinPer100() : 0.0) * multiplier;
             this.carbs = (food.getCarbsPer100() != null ? food.getCarbsPer100() : 0.0) * multiplier;

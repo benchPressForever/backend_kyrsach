@@ -1,7 +1,6 @@
 package com.example.back_healthy_food_app.meal_food.service;
 
 import com.example.back_healthy_food_app.errors.MealFoodNotFoundException;
-import com.example.back_healthy_food_app.food.dto.Food;
 import com.example.back_healthy_food_app.food.service.FoodService;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import com.example.back_healthy_food_app.meal_food.dto.MealFoodRequest;
@@ -9,6 +8,8 @@ import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
 import com.example.back_healthy_food_app.meal_food.dto.UpdateDtoMealFood;
 import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import com.example.back_healthy_food_app.meal_food.storage.MealFoodRepository;
+import com.example.back_healthy_food_app.meal.service.MealService;
+import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,11 +17,12 @@ public class MealFoodService implements IMealFoodService {
 
     private final MealFoodRepository mealFoodRepository;
     private final FoodService foodService;
-
-    public MealFoodService(MealFoodRepository mealFoodRepository, FoodService foodService)
+    private final MealService mealService;
+    public MealFoodService(MealFoodRepository mealFoodRepository, FoodService foodService, MealService mealService)
     {
         this.mealFoodRepository = mealFoodRepository;
         this.foodService = foodService;
+        this.mealService = mealService;
     }
 
     @Override
@@ -33,8 +35,8 @@ public class MealFoodService implements IMealFoodService {
     @Override
     public MealFoodResponse save(MealFoodRequest request) {
         FoodDBEntity foodEntity = foodService.getEntityById(request.getFoodId());
-
-        MealFoodEntity mealFoodEntity = new MealFoodEntity(request, foodEntity);
+        MealEntity mealEntity = mealService.getEntityById(request.getMealId());
+        MealFoodEntity mealFoodEntity = new MealFoodEntity(request, foodEntity, mealEntity);
 
         MealFoodEntity saved = mealFoodRepository.save(mealFoodEntity);
 
@@ -44,7 +46,7 @@ public class MealFoodService implements IMealFoodService {
     @Override
     public void delete(String id) {
         if (!mealFoodRepository.existsById(id)) {
-            throw new MealFoodNotFoundException(id);
+                throw new MealFoodNotFoundException(id);
         }
         mealFoodRepository.deleteById(id);
     }

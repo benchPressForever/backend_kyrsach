@@ -10,7 +10,8 @@ public class MealFoodRequest {
     @PositiveOrZero(message = "Размер порции должен быть положительным")
     private Double servingSize;
 
-    //private String mealId;
+    @NotBlank(message = "ID приёма пищи обязателен")
+    private String mealId;
 
     @NotBlank(message = "ID продукта обязателен")
     private String foodId;
@@ -18,9 +19,9 @@ public class MealFoodRequest {
 
     public MealFoodRequest() {}
 
-    public MealFoodRequest(Double servingSize, /*String mealId,*/ String foodId) {
+    public MealFoodRequest(Double servingSize, String mealId, String foodId) {
         this.servingSize = servingSize;
-        //this.mealId = mealId;
+        this.mealId = mealId;
         this.foodId = foodId;
     }
 
