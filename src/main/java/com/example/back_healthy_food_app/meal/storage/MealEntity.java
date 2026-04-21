@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import com.example.back_healthy_food_app.meal.dto.MealResponse;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,8 +37,8 @@ public class MealEntity {
     @Column(name="notes",nullable = false)
     private String notes;
 
-    @Column(name = "time",
-            columnDefinition = "TIMESTAMP WITH TIME ZONE DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'Europe/Moscow')")
+    @CreationTimestamp
+    @Column(name = "time", nullable = false, updatable = false)
     private Date time;
 
 
