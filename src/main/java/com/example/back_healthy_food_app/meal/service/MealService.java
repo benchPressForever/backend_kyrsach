@@ -1,26 +1,20 @@
 package com.example.back_healthy_food_app.meal.service;
 
-import com.example.back_healthy_food_app.errors.FoodNotFoundException;
 import com.example.back_healthy_food_app.errors.MealFoodNotFoundException;
 import com.example.back_healthy_food_app.errors.MealNotFoundException;
-import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import com.example.back_healthy_food_app.meal.dto.MealResponse;
 import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
 import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import com.example.back_healthy_food_app.meal.storage.MealRepository;
-import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MealService implements IMealService {
+    private final MealRepository repository;
 
-    private final MealRepository mealRepository;
-    private MealRepository repository;
-
-    public MealService(MealRepository mealRepository) {
-        this.repository = mealRepository;
-        this.mealRepository = mealRepository;
+    public MealService(MealRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -30,23 +24,11 @@ public class MealService implements IMealService {
     }
 
     @Override
-    public MealResponse get(String id) {
-        return mealRepository.findById(id).
-                map(MealEntity::asMeal).
-                orElseThrow(() -> new MealNotFoundException(id));
-    }
-
-
-    public MealEntity getEntityById(String id){
-        return repository.findById(id).orElseThrow(() -> new FoodNotFoundException(id));
-    }
-
-    @Override
     public void delete(String id) {
-        if(!mealRepository.existsById(id)){
-            throw new MealNotFoundException(id);
+        if (!repository.existsById(id)) {
+            throw new MealFoodNotFoundException(id);
         }
-        mealRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
@@ -58,5 +40,17 @@ public class MealService implements IMealService {
         meal.setNotes(dto.getNotes());
 
         return repository.save(meal).asMeal();
+    }
+
+    @Override
+    public MealResponse get(String id) {
+        return repository.findById(id).
+                map(MealEntity::asMeal).
+                orElseThrow(() -> new MealNotFoundException(id));
+    }
+
+    public MealEntity getEntityById(String id) {
+        return repository.findById(id).
+                orElseThrow(() -> new MealNotFoundException(id));
     }
 }

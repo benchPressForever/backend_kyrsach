@@ -1,6 +1,4 @@
 package com.example.back_healthy_food_app.meal.dto;
-
-import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
 import lombok.Data;
 
@@ -20,12 +18,11 @@ public class MealResponse {
     private Double calories;
     private Double protein;
     private Double carbs;
-    private Double fats;
+    private Double fat;
 
     private List<MealFoodResponse> mealFoods;
 
     public MealResponse() {}
-
 
     public MealResponse(MealEntity mealEntity) {
         this.id = mealEntity.getId();
@@ -38,6 +35,4 @@ public class MealResponse {
         this.time = mealEntity.getTime();
         this.mealFoods = new ArrayList<>();
     }
-
-
 }

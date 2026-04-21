@@ -16,10 +16,9 @@ import java.util.List;
 public class MealController {
     private final MealService service;
 
-    public MealController(MealService service){
+    public MealController(MealService service) {
         this.service = service;
     }
-
 
     @GetMapping("{id}")
     public MealResponse getById(@PathVariable String id){
@@ -32,15 +31,15 @@ public class MealController {
         return service.insert(request);
     }
 
-    @PatchMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public MealResponse update(@PathVariable String id,@RequestBody UpdateDtoMeal dto){
-        return service.update(id,dto);
-    }
-
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String id){
         service.delete(id);
+    }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MealResponse update(@PathVariable String id,@RequestBody UpdateDtoMeal dto){
+        return service.update(id,dto);
     }
 }

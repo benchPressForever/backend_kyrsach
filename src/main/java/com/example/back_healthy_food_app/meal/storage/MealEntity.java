@@ -1,21 +1,19 @@
 package com.example.back_healthy_food_app.meal.storage;
 
-import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
-import com.example.back_healthy_food_app.meal.dto.MealRequest;
-import com.example.back_healthy_food_app.meal.dto.MealResponse;
-import com.example.back_healthy_food_app.meal_food.dto.MealFoodRequest;
-import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
 import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import com.example.back_healthy_food_app.meal.dto.MealRequest;
+import com.example.back_healthy_food_app.meal.dto.MealResponse;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "meal")
+@Data
 public class MealEntity {
 
     @Id
@@ -25,23 +23,23 @@ public class MealEntity {
     @Column(name="name",nullable = false,unique = true)
     private String name;
 
-    @Column(name="calories", columnDefinition = "FLOAT DEFAULT 0.0")
+    @Column(name="calories",columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double calories;
 
-    @Column(name="protein",columnDefinition = "FLOAT DEFAULT 0.0")
+    @Column(name="protein",columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double protein;
 
-    @Column(name="fat",columnDefinition = "FLOAT DEFAULT 0.0")
+    @Column(name="fat",columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double fat;
 
-    @Column(name="carbs",columnDefinition = "FLOAT DEFAULT 0.0")
+    @Column(name="carbs",columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double carbs;
 
     @Column(name="notes",nullable = false)
     private String notes;
 
-    @Column(name = "time",
-            columnDefinition = "TIMESTAMP WITH TIME ZONE DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'Europe/Moscow')")
+    @CreationTimestamp
+    @Column(name = "time", nullable = false, updatable = false)
     private Date time;
 
     @OneToMany(mappedBy = "meal",
