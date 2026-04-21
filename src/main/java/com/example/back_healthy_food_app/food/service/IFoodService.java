@@ -1,6 +1,7 @@
 package com.example.back_healthy_food_app.food.service;
 
 import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.food.dto.FoodGetDto;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import jakarta.persistence.Entity;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface IFoodService {
 
     //searchByName - получение по имени с пагинацией
-    List<Food> searchAllByName(String name, Integer page, Integer limit);
+    List<Food> searchAllByName(FoodGetDto dto);
 
     //getById - получение по id
     Food getById(String id);

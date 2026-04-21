@@ -5,9 +5,11 @@ import lombok.Data;
 
 @Data
 public class RecommendationResponse {
+
     private String id;
     private String title;
     private String text;
+
     public RecommendationResponse(RecommendationEntity recommendationEntity) {
         this.id = recommendationEntity.getId();
         this.text = recommendationEntity.getText();

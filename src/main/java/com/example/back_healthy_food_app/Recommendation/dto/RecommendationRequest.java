@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class RecommendationRequest {
 
-    @NotBlank(message = "Recommendation title must be a string")
-    @Size(max = 200, message = "Title is too long")
+    @NotBlank(message = "Заголовок рекомендации не может быть пустым")
+    @Size(max = 100, message = "Заголовок не должен превышать 100 символов")
     private String title;
 
-    @NotBlank(message = "Recommendation text must be a string")
+    @NotBlank(message = "Текст рекомендации не может быть пустым")
     private String text;
 
     public RecommendationRequest(String title, String text){

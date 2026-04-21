@@ -6,6 +6,7 @@ import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import com.example.back_healthy_food_app.meal.dto.MealResponse;
 import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
 import com.example.back_healthy_food_app.meal.service.MealService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class MealController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MealResponse create(@RequestBody MealRequest request){
+    public MealResponse create(@Valid @RequestBody MealRequest request){
         return service.insert(request);
     }
 
@@ -39,7 +40,7 @@ public class MealController {
 
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MealResponse update(@PathVariable String id,@RequestBody UpdateDtoMeal dto){
+    public MealResponse update(@PathVariable String id,@Valid @RequestBody UpdateDtoMeal dto){
         return service.update(id,dto);
     }
 }

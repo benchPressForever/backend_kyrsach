@@ -1,4 +1,5 @@
 package com.example.back_healthy_food_app.meal.dto;
+import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
 import lombok.Data;
 
@@ -31,7 +32,7 @@ public class MealResponse {
         this.calories = mealEntity.getCalories();
         this.protein = mealEntity.getProtein();
         this.carbs = mealEntity.getCarbs();
-        this.fats = mealEntity.getFat();
+        this.fat = mealEntity.getFat();
         this.time = mealEntity.getTime();
         this.mealFoods = new ArrayList<>();
     }

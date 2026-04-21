@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface FoodRepository extends JpaRepository<FoodDBEntity,String> {
 
     // Поиск по имени с пагинацией
-    Page<FoodDBEntity> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    Page<FoodDBEntity> findByNameContainingIgnoreCaseOrderByNameDesc(String name, Pageable pageable);
 
 
 }

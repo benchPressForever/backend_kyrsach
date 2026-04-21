@@ -3,6 +3,7 @@ package com.example.back_healthy_food_app.food.service;
 
 import com.example.back_healthy_food_app.errors.FoodNotFoundException;
 import com.example.back_healthy_food_app.food.dto.Food;
+import com.example.back_healthy_food_app.food.dto.FoodGetDto;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import com.example.back_healthy_food_app.food.storage.FoodRepository;
 import org.springframework.data.domain.PageRequest;
@@ -20,10 +21,10 @@ public class FoodService implements IFoodService {
     public FoodService(FoodRepository foodRepository) {this.repository = foodRepository;}
 
     @Override
-    public List<Food> searchAllByName(String name, Integer page, Integer limit){
-        Pageable pageable =  PageRequest.of(page,limit);
+    public List<Food> searchAllByName(FoodGetDto dto){
+        Pageable pageable =  PageRequest.of(dto.getPage()-1, dto.getLimit());
 
-        return repository.findByNameContainingIgnoreCase(name, pageable)
+        return repository.findByNameContainingIgnoreCaseOrderByNameDesc(dto.getName(),pageable)
                 .stream()
                 .map(FoodDBEntity::asFood)
                 .toList();

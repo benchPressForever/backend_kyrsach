@@ -5,7 +5,6 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-// Food - класс, описывающий сущность продукта
 public class Food {
 
     private String id;
@@ -17,26 +16,18 @@ public class Food {
 
     @NotNull(message = "Калорийность на 100г обязательна")
     @PositiveOrZero(message = "Калорийность не может быть отрицательной")
-    @DecimalMax(value = "1000.0", message = "Калорийность на 100г не может превышать 1000 ккал")
-    @JsonProperty("caloriesPer100")
     private Double caloriesPer100;
 
     @NotNull(message = "Белки на 100г обязательны")
     @PositiveOrZero(message = "Количество белков не может быть отрицательным")
-    @DecimalMax(value = "100.0", message = "Белки на 100г не могут превышать 100г")
-    @JsonProperty("proteinPer100")
     private Double proteinPer100;
 
     @NotNull(message = "Жиры на 100г обязательны")
     @PositiveOrZero(message = "Количество жиров не может быть отрицательным")
-    @DecimalMax(value = "100.0", message = "Жиры на 100г не могут превышать 100г")
-    @JsonProperty("fatPer100")
     private Double fatPer100;
 
     @NotNull(message = "Углеводы на 100г обязательны")
     @PositiveOrZero(message = "Количество углеводов не может быть отрицательным")
-    @DecimalMax(value = "100.0", message = "Углеводы на 100г не могут превышать 100г")
-    @JsonProperty("carbsPer100")
     private Double carbsPer100;
 
     public Food() {}
