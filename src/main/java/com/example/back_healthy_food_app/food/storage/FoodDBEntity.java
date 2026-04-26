@@ -39,16 +39,6 @@ public class FoodDBEntity {
                 orphanRemoval = true)
     private List<MealFoodEntity> mealFoods = new ArrayList<>();
 
-    public void addMealFood(MealFoodEntity mealFood) {
-        mealFoods.add(mealFood);
-        mealFood.setFood(this);  // Синхронизация обратной стороны
-    }
-
-    public void removeMealFood(MealFoodEntity mealFood) {
-        mealFoods.remove(mealFood);
-        mealFood.setFood(null);
-    }
-
     public FoodDBEntity() {}
 
     public FoodDBEntity(Food food){
