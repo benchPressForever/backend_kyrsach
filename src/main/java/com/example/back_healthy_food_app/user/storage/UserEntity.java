@@ -1,10 +1,15 @@
-package com.example.back_healthy_food_app.user;
+package com.example.back_healthy_food_app.user.storage;
 
-import com.example.back_healthy_food_app.auth.Gender;
+import com.example.back_healthy_food_app.auth.dto.Gender;
+import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
+import com.example.back_healthy_food_app.meal.storage.MealEntity;
+import com.example.back_healthy_food_app.user.dto.UserResponse;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,7 +34,7 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    /*@OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
@@ -39,7 +44,7 @@ public class UserEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
-    private List<DailyStatEntity> dailyStats = new ArrayList<>();*/
+    private List<DailyStatEntity> dailyStats = new ArrayList<>();
 
     public UserEntity() {}
 
@@ -49,5 +54,9 @@ public class UserEntity {
         this.password = password;
         this.birthDate = birthDate;
         this.gender = gender;
+    }
+
+    public UserResponse asUserResponse(){
+        return new UserResponse(this);
     }
 }

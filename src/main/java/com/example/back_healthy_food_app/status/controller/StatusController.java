@@ -1,4 +1,4 @@
-package com.example.back_healthy_food_app.api.controller;
+package com.example.back_healthy_food_app.status.controller;
 
 
 import com.example.back_healthy_food_app.message.CommonApiMessages.StringMessage;

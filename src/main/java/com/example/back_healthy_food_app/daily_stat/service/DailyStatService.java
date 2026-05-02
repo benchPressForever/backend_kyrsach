@@ -7,6 +7,9 @@ import com.example.back_healthy_food_app.daily_stat.storage.DailyRepository;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
 import com.example.back_healthy_food_app.errors.DailyStatNotFoundException;
 import com.example.back_healthy_food_app.errors.MealNotFoundException;
+import com.example.back_healthy_food_app.user.service.UserService;
+import com.example.back_healthy_food_app.user.storage.UserEntity;
+import com.example.back_healthy_food_app.user.storage.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,9 +18,11 @@ import java.time.LocalDate;
 public class DailyStatService implements IDailyStatService {
 
     private final DailyRepository repository;
+    private final UserService userService;
 
-    public DailyStatService(DailyRepository repository) {
+    public DailyStatService(DailyRepository repository, UserRepository userRepository, UserService userService) {
         this.repository = repository;
+        this.userService = userService;
     }
 
 
@@ -33,10 +38,10 @@ public class DailyStatService implements IDailyStatService {
     }
 
     @Override
-    public DailyStatResponse create(DailyStatRequest request) {
-        DailyStatEntity dailyEntity = new DailyStatEntity(request);
+    public DailyStatResponse create(DailyStatRequest request,String userId) {
+        UserEntity user = userService.getEntityById(userId);
 
-        //реализовать соединение с User
+        DailyStatEntity dailyEntity = new DailyStatEntity(request,user);
 
         return repository.save(dailyEntity).asDailyStat();
     }

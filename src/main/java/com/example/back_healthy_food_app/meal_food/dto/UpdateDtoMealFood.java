@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class UpdateDtoMealFood {
     @Positive(message = "Размер порции должен быть положительным")
-    private Double servingSize;
+    private Float servingSize;
 
     public UpdateDtoMealFood() {}
 
-    public UpdateDtoMealFood(Double servingSize) {
+    public UpdateDtoMealFood(Float servingSize) {
         this.servingSize = servingSize;
     }
 }

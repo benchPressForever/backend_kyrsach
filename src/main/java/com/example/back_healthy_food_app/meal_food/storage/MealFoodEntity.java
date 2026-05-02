@@ -18,7 +18,7 @@ public class MealFoodEntity {
     private String id;
 
     @Column(name="serving_size",nullable = false, columnDefinition = "FLOAT DEFAULT 0.0")
-    private Double servingSize;
+    private Float servingSize;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "food_id",nullable = false)

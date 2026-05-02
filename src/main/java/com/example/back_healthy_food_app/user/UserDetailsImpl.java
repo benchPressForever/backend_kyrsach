@@ -1,5 +1,6 @@
 package com.example.back_healthy_food_app.user;
 
+import com.example.back_healthy_food_app.user.storage.UserEntity;
 import lombok.Data;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;

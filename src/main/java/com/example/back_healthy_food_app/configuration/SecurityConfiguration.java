@@ -1,9 +1,6 @@
 package com.example.back_healthy_food_app.configuration;
-
-
-
-import com.example.back_healthy_food_app.auth.TokenFilter;
-import com.example.back_healthy_food_app.user.UserService;
+import com.example.back_healthy_food_app.auth.jwt.TokenFilter;
+import com.example.back_healthy_food_app.errors.ErrorResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -18,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
@@ -25,17 +23,10 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private final UserService userService;
     private final TokenFilter tokenFilter;
 
-    public SecurityConfiguration(UserService userService, TokenFilter tokenFilter) {
-        this.userService = userService;
+    public SecurityConfiguration(TokenFilter tokenFilter) {
         this.tokenFilter = tokenFilter;
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -57,7 +48,20 @@ public class SecurityConfiguration {
                     return config;
                 }))
                 .exceptionHandling(exceptions -> exceptions.
-                        authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                        authenticationEntryPoint(
+                                (request, response, authException) -> {
+                                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                                    response.setContentType("application/json");
+
+                                    ErrorResponse errorResponse = new ErrorResponse(
+                                            HttpStatus.UNAUTHORIZED.value(),
+                                            "Invalid email or password"
+                                    );
+                                    errorResponse.addError("auth", authException.getMessage());
+
+                                    response.getWriter().write(new ObjectMapper().writeValueAsString(errorResponse));
+                                }
+                        )
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
