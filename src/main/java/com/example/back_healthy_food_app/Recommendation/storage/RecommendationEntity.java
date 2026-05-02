@@ -2,7 +2,6 @@ package com.example.back_healthy_food_app.Recommendation.storage;
 
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationRequest;
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationResponse;
-import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 

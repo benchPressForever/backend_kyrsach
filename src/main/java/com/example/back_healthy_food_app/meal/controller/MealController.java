@@ -1,7 +1,5 @@
 package com.example.back_healthy_food_app.meal.controller;
 
-import com.example.back_healthy_food_app.food.dto.Food;
-import com.example.back_healthy_food_app.food.service.FoodService;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import com.example.back_healthy_food_app.meal.dto.MealResponse;
 import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
