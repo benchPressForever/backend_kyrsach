@@ -1,4 +1,4 @@
-package com.example.back_healthy_food_app.auth;
+package com.example.back_healthy_food_app.auth.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -6,7 +6,7 @@ import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
 
 public interface IMealService {
 
-    MealResponse insert(MealRequest mealFood);
+    MealResponse insert(MealRequest mealFood,String userId);
 
     void delete(String id);
 

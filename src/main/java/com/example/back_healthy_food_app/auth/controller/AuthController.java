@@ -1,13 +1,11 @@
-package com.example.back_healthy_food_app.auth;
+package com.example.back_healthy_food_app.auth.controller;
 
 
+import com.example.back_healthy_food_app.auth.service.AuthService;
 import com.example.back_healthy_food_app.auth.dto.AuthResponse;
 import com.example.back_healthy_food_app.auth.dto.SigninRequest;
 import com.example.back_healthy_food_app.auth.dto.SignupRequest;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

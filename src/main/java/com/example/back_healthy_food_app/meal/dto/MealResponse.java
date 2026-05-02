@@ -16,10 +16,10 @@ public class MealResponse {
     private String notes;
     private Date time;
 
-    private Double calories;
-    private Double protein;
-    private Double carbs;
-    private Double fat;
+    private Float calories;
+    private Float protein;
+    private Float carbs;
+    private Float fat;
 
     private List<MealFoodResponse> mealFoods;
 

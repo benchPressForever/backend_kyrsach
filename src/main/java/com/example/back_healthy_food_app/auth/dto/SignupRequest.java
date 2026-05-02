@@ -1,7 +1,6 @@
 package com.example.back_healthy_food_app.auth.dto;
 
 
-import com.example.back_healthy_food_app.auth.Gender;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 

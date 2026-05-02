@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-@Service
 public interface IDailyStatService {
 
     DailyStatResponse getByDate(String userId,LocalDate date);
 
     DailyStatResponse getById(String id);
 
-    DailyStatResponse create(DailyStatRequest request);
+    DailyStatResponse create(DailyStatRequest request,String userId);
 
     DailyStatResponse update(String id, UpdateDtoDailyStat dto);
 

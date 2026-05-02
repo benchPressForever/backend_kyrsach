@@ -1,11 +1,12 @@
-package com.example.back_healthy_food_app.auth;
+package com.example.back_healthy_food_app.auth.service;
 
+import com.example.back_healthy_food_app.auth.jwt.JwtCore;
 import com.example.back_healthy_food_app.auth.dto.AuthResponse;
 import com.example.back_healthy_food_app.auth.dto.SigninRequest;
 import com.example.back_healthy_food_app.auth.dto.SignupRequest;
 import com.example.back_healthy_food_app.user.UserDetailsImpl;
-import com.example.back_healthy_food_app.user.UserEntity;
-import com.example.back_healthy_food_app.user.UserRepository;
+import com.example.back_healthy_food_app.user.storage.UserEntity;
+import com.example.back_healthy_food_app.user.storage.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class AuthService {
+public class AuthService implements IAuthService{
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;

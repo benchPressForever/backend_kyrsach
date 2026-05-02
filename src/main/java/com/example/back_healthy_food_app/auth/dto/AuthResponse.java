@@ -1,7 +1,6 @@
 package com.example.back_healthy_food_app.auth.dto;
 
-import com.example.back_healthy_food_app.auth.Gender;
-import com.example.back_healthy_food_app.user.UserEntity;
+import com.example.back_healthy_food_app.user.storage.UserEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
