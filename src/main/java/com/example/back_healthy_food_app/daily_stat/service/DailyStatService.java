@@ -2,6 +2,7 @@ package com.example.back_healthy_food_app.daily_stat.service;
 
 import com.example.back_healthy_food_app.daily_stat.dto.DailyStatRequest;
 import com.example.back_healthy_food_app.daily_stat.dto.DailyStatResponse;
+import com.example.back_healthy_food_app.daily_stat.dto.GetDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.dto.UpdateDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyRepository;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
@@ -25,16 +26,21 @@ public class DailyStatService implements IDailyStatService {
         this.userService = userService;
     }
 
-
     @Override
-    public DailyStatResponse getByDate(String userId,LocalDate date) {
-        return null;
+    public DailyStatResponse getByDate(String userId, GetDtoDailyStat dto) {
+        return repository.findByDateAndUserId(userId,dto.getDate()).map(DailyStatEntity::asDailyStat)
+                .orElseThrow(() -> new DailyStatNotFoundException(dto.getDate().toString()));
     }
 
     @Override
     public DailyStatResponse getById(String id) {
         return repository.findById(id).map(DailyStatEntity::asDailyStat)
                 .orElseThrow(() ->  new DailyStatNotFoundException(id));
+    }
+
+    @Override
+    public DailyStatEntity getEntityById(String id) {
+        return repository.findById(id).orElseThrow(() ->  new DailyStatNotFoundException(id));
     }
 
     @Override

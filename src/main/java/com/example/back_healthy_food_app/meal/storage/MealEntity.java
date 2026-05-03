@@ -1,5 +1,6 @@
 package com.example.back_healthy_food_app.meal.storage;
 
+import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import com.example.back_healthy_food_app.user.storage.UserEntity;
@@ -45,8 +46,8 @@ public class MealEntity {
     private Date time;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
-    private UserEntity user;
+    @JoinColumn(name = "daily_id",nullable = false)
+    private DailyStatEntity daily;
 
     @OneToMany(mappedBy = "meal",
             cascade = CascadeType.ALL,
@@ -56,15 +57,16 @@ public class MealEntity {
 
     public MealEntity() {}
 
-    public MealEntity(MealRequest request,UserEntity user) {
+    public MealEntity(MealRequest request, DailyStatEntity  daily) {
         this.name = request.getName();
         this.notes = request.getNotes();
+        this.time = new Date();
+        this.daily = daily;
+        this.carbs = 0.0f;
         this.calories = 0.0f;
         this.protein = 0.0f;
-        this.carbs = 0.0f;
-        this.fat = 0.0f;
-        this.time = new Date();
-        this.user = user;
+        this.fat  = 0.0f;
+
     }
 
     public MealResponse asMeal() {

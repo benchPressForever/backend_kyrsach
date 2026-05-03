@@ -1,5 +1,7 @@
 package com.example.back_healthy_food_app.meal.service;
 
+import com.example.back_healthy_food_app.daily_stat.service.DailyStatService;
+import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
 import com.example.back_healthy_food_app.errors.MealFoodNotFoundException;
 import com.example.back_healthy_food_app.errors.MealNotFoundException;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
@@ -14,17 +16,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class MealService implements IMealService {
     private final MealRepository repository;
-    private final UserService userService;
+    private final DailyStatService dailyStatService;
 
-    public MealService(MealRepository repository, UserService userService) {
+    public MealService(MealRepository repository, DailyStatService dailyStatService) {
         this.repository = repository;
-        this.userService = userService;
+        this.dailyStatService = dailyStatService;
     }
 
     @Override
-    public MealResponse insert(MealRequest meal,String userId) {
-        UserEntity user = userService.getEntityById(userId);
-        MealEntity mealEntity = new MealEntity(meal,user);
+    public MealResponse insert(MealRequest meal) {
+        DailyStatEntity daily = dailyStatService.getEntityById(meal.getDailyId());
+        MealEntity mealEntity = new MealEntity(meal,daily);
         return repository.save(mealEntity).asMeal();
     }
 

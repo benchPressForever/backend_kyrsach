@@ -9,7 +9,7 @@ import com.example.back_healthy_food_app.meal_food.dto.UpdateDtoMealFood;
 
 public interface IMealService {
 
-    MealResponse insert(MealRequest mealFood,String userId);
+    MealResponse insert(MealRequest meal);
 
     void delete(String id);
 

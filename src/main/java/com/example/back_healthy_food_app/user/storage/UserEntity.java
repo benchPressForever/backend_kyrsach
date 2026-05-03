@@ -38,12 +38,6 @@ public class UserEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
-    private List<MealEntity> meals = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true)
     private List<DailyStatEntity> dailyStats = new ArrayList<>();
 
     public UserEntity() {}

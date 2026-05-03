@@ -27,9 +27,8 @@ public class MealController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MealResponse create(@Valid @RequestBody MealRequest request
-                              ,@AuthenticationPrincipal UserDetailsImpl currentUser){
-        return service.insert(request,currentUser.getId());
+    public MealResponse create(@Valid @RequestBody MealRequest request){
+        return service.insert(request);
     }
 
     @DeleteMapping("{id}")

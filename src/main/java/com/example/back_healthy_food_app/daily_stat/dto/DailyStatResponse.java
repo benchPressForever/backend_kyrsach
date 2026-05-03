@@ -28,9 +28,9 @@ public class DailyStatResponse {
         this.height = dailyStatEntity.getHeight();
         this.date = dailyStatEntity.getDate();
         this.mealsCount = dailyStatEntity.getMealsCount();
-        this.calories = 0.0F;
-        this.protein = 0.0F;
-        this.fat =  0.0F;
-        this.carbs = 0.0F;
+        this.calories = dailyStatEntity.getCalories();
+        this.protein = dailyStatEntity.getProtein();
+        this.fat =  dailyStatEntity.getFat();
+        this.carbs = dailyStatEntity.getCarbs();
     }
 }

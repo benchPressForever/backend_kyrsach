@@ -3,6 +3,7 @@ package com.example.back_healthy_food_app.daily_stat.controller;
 
 import com.example.back_healthy_food_app.daily_stat.dto.DailyStatRequest;
 import com.example.back_healthy_food_app.daily_stat.dto.DailyStatResponse;
+import com.example.back_healthy_food_app.daily_stat.dto.GetDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.dto.UpdateDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.service.DailyStatService;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
@@ -26,12 +27,12 @@ public class DailyStatController {
         this.service = service;
     }
 
-    /*@GetMapping
-    public MealResponse getByDate(
-            @RequestParam LocalDate date,
-            @RequestParam String userId){
-        return service.getByDate(userId,date);
-    }*/
+    @GetMapping
+    public DailyStatResponse getByDate(
+            @Valid @RequestBody GetDtoDailyStat dto,
+            @AuthenticationPrincipal UserDetailsImpl currentUser){
+        return service.getByDate(currentUser.getId(), dto);
+    }
 
     @GetMapping("{id}")
     public DailyStatResponse getById(@PathVariable String id){
