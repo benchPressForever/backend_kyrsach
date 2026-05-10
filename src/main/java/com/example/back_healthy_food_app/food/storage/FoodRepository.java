@@ -12,5 +12,4 @@ public interface FoodRepository extends JpaRepository<FoodDBEntity,String> {
     // Поиск по имени с пагинацией
     Page<FoodDBEntity> findByNameContainingIgnoreCaseOrderByNameDesc(String name, Pageable pageable);
 
-
 }

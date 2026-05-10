@@ -15,11 +15,12 @@ public class MealResponse {
     private String name;
     private String notes;
     private Date time;
+    private String dailyId;
 
-    private Double calories;
-    private Double protein;
-    private Double carbs;
-    private Double fat;
+    private Float calories;
+    private Float protein;
+    private Float carbs;
+    private Float fat;
 
     private List<MealFoodResponse> mealFoods;
 
@@ -35,5 +36,6 @@ public class MealResponse {
         this.fat = mealEntity.getFat();
         this.time = mealEntity.getTime();
         this.mealFoods = new ArrayList<>();
+        this.dailyId =  mealEntity.getDaily().getId();
     }
 }

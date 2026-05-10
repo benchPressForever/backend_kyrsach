@@ -8,7 +8,7 @@ public class MealFoodRequest {
 
 
     @Positive(message = "Размер порции должен быть положительным числом")
-    private Double servingSize;
+    private Float servingSize;
 
     @NotBlank(message = "ID приёма пищи обязателен")
     private String mealId;
@@ -19,7 +19,7 @@ public class MealFoodRequest {
 
     public MealFoodRequest() {}
 
-    public MealFoodRequest(Double servingSize, String mealId, String foodId) {
+    public MealFoodRequest(Float servingSize, String mealId, String foodId) {
         this.servingSize = servingSize;
         this.mealId = mealId;
         this.foodId = foodId;

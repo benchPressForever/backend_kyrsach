@@ -12,10 +12,14 @@ public class MealRequest {
     @NotBlank(message = "Записка приёма пищи обязателена")
     private String notes;
 
+    @NotBlank(message = "Поле DailyId обязательно!")
+    private String dailyId;
+
     public MealRequest() {}
 
-    public MealRequest(String name, String notes) {
+    public MealRequest(String name, String notes,String dailyId) {
         this.name = name;
         this.notes = notes;
+        this.dailyId = dailyId;
     }
 }
