@@ -6,12 +6,14 @@ import com.example.back_healthy_food_app.daily_stat.dto.DailyStatResponse;
 import com.example.back_healthy_food_app.daily_stat.dto.GetDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.dto.UpdateDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.service.DailyStatService;
+import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
 import com.example.back_healthy_food_app.meal.dto.MealRequest;
 import com.example.back_healthy_food_app.meal.dto.MealResponse;
 import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
 import com.example.back_healthy_food_app.user.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

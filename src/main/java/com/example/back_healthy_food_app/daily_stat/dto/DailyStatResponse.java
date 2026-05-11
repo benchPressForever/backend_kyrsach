@@ -1,10 +1,14 @@
 package com.example.back_healthy_food_app.daily_stat.dto;
 
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
+import com.example.back_healthy_food_app.meal.dto.MealResponse;
+import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class DailyStatResponse {
@@ -20,6 +24,8 @@ public class DailyStatResponse {
     private Float fat;
     private Float carbs;
 
+    private List<MealResponse> meals;
+
     public DailyStatResponse() {}
 
     public DailyStatResponse(DailyStatEntity dailyStatEntity) {
@@ -32,5 +38,6 @@ public class DailyStatResponse {
         this.protein = dailyStatEntity.getProtein();
         this.fat =  dailyStatEntity.getFat();
         this.carbs = dailyStatEntity.getCarbs();
+        this.meals = dailyStatEntity.getMeals().stream().map(MealEntity::asMeal).collect(Collectors.toList());
     }
 }

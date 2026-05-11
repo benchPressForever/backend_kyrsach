@@ -1,11 +1,13 @@
 package com.example.back_healthy_food_app.meal.dto;
 import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import com.example.back_healthy_food_app.meal_food.dto.MealFoodResponse;
+import com.example.back_healthy_food_app.meal_food.storage.MealFoodEntity;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class MealResponse {
@@ -35,7 +37,7 @@ public class MealResponse {
         this.carbs = mealEntity.getCarbs();
         this.fat = mealEntity.getFat();
         this.time = mealEntity.getTime();
-        this.mealFoods = new ArrayList<>();
+        this.mealFoods = mealEntity.getMealFoods().stream().map(MealFoodEntity::asMealFood).collect(Collectors.toList());
         this.dailyId =  mealEntity.getDaily().getId();
     }
 }

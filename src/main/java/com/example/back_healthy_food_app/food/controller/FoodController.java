@@ -3,6 +3,7 @@ package com.example.back_healthy_food_app.food.controller;
 
 import com.example.back_healthy_food_app.food.dto.Food;
 import com.example.back_healthy_food_app.food.dto.FoodGetDto;
+import com.example.back_healthy_food_app.food.dto.UpdateDtoFood;
 import com.example.back_healthy_food_app.food.service.FoodService;
 import jakarta.validation.Valid;
 import org.springframework.data.jpa.repository.Query;
@@ -39,7 +40,7 @@ public class FoodController {
 
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Food update(@PathVariable String id,@Valid @RequestBody Food food){
+    public Food update(@PathVariable String id,@Valid @RequestBody UpdateDtoFood food){
         return service.update(id,food);
     }
 

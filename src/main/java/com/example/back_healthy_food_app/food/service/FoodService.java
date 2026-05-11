@@ -4,6 +4,7 @@ package com.example.back_healthy_food_app.food.service;
 import com.example.back_healthy_food_app.errors.FoodNotFoundException;
 import com.example.back_healthy_food_app.food.dto.Food;
 import com.example.back_healthy_food_app.food.dto.FoodGetDto;
+import com.example.back_healthy_food_app.food.dto.UpdateDtoFood;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import com.example.back_healthy_food_app.food.storage.FoodRepository;
 import org.springframework.data.domain.PageRequest;
@@ -49,15 +50,16 @@ public class FoodService implements IFoodService {
     }
 
     @Override
-    public Food update(String id, Food food) {
+    public Food update(String id, UpdateDtoFood dto) {
         FoodDBEntity foodDBEntity = repository.findById(id)
                 .orElseThrow(() -> new FoodNotFoundException(id));
 
-        foodDBEntity.setName(food.getName());
-        foodDBEntity.setFatPer100(food.getFatPer100());
-        foodDBEntity.setCarbsPer100(food.getCarbsPer100());
-        foodDBEntity.setProteinPer100(food.getProteinPer100());
-        foodDBEntity.setCaloriesPer100(food.getCaloriesPer100());
+        if(dto.getName() != null) foodDBEntity.setName(dto.getName());
+        if(dto.getFatPer100() != null) foodDBEntity.setFatPer100(dto.getFatPer100());
+        if(dto.getCarbsPer100() != null) foodDBEntity.setCarbsPer100(dto.getCarbsPer100());
+        if(dto.getProteinPer100() != null) foodDBEntity.setProteinPer100(dto.getProteinPer100());
+        if(dto.getCaloriesPer100() != null) foodDBEntity.setCaloriesPer100(dto.getCaloriesPer100());
+
         return repository.save(foodDBEntity).asFood();
     }
 

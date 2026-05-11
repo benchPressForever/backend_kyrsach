@@ -2,6 +2,7 @@ package com.example.back_healthy_food_app.Recommendation.service;
 
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationRequest;
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationResponse;
+import com.example.back_healthy_food_app.Recommendation.dto.UpdateDtoRecommandation;
 import com.example.back_healthy_food_app.Recommendation.storage.RecommendationEntity;
 import com.example.back_healthy_food_app.Recommendation.storage.RecommendationRepository;
 import com.example.back_healthy_food_app.errors.RecommendationNotFoundException;
@@ -33,11 +34,17 @@ public class RecommendationService implements IRecommendationService {
     }
 
     @Override
-    public RecommendationResponse update(String id, RecommendationRequest dto) {//ж - жопа
+    public RecommendationResponse update(String id, UpdateDtoRecommandation dto) {//ж - жопа
         RecommendationEntity recommendation =  repository.findById(id)
                 .orElseThrow(() -> new RecommendationNotFoundException(id));
-        recommendation.setText(dto.getText());
-        recommendation.setTitle(dto.getTitle());
+
+        if(dto.getText() != null) {
+            recommendation.setText(dto.getText());
+        }
+        if(dto.getTitle() != null) {
+            recommendation.setTitle(dto.getTitle());
+        }
+
         return repository.save(recommendation).asRecommendation();
     }
 

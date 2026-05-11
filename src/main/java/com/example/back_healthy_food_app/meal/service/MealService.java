@@ -43,8 +43,12 @@ public class MealService implements IMealService {
         MealEntity meal =  repository.findById(id)
                 .orElseThrow(() -> new MealNotFoundException(id));
 
-        meal.setName(dto.getName());
-        meal.setNotes(dto.getNotes());
+        if(dto.getNotes() != null) {
+            meal.setNotes(dto.getNotes());
+        }
+        if(dto.getName() != null) {
+            meal.setName(dto.getName());
+        }
 
         return repository.save(meal).asMeal();
     }

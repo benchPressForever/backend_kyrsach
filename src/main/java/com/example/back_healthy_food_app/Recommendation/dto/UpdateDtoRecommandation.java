@@ -5,18 +5,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class RecommendationRequest {
+public class UpdateDtoRecommandation {
 
-    @NotBlank(message = "Заголовок рекомендации не может быть пустым")
     @Size(max = 100, message = "Заголовок не должен превышать 100 символов")
     private String title;
 
-    @NotBlank(message = "Текст рекомендации не может быть пустым")
     @Size(max = 300, message = "Текст не должен превышать 300 символов")
     private String text;
-
-    public RecommendationRequest(String title, String text){
-        this.title = title;
-        this.text = text;
-    };
 }

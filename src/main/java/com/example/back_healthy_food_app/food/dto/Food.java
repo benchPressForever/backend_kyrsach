@@ -11,7 +11,6 @@ public class Food {
 
     @NotBlank(message = "Название продукта обязательно")
     @Size(min = 2, max = 100, message = "Название продукта должно быть от 2 до 100 символов")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я0-9\\s\\-]+$", message = "Название может содержать только буквы, цифры, пробелы и дефисы")
     private String name;
 
     @NotNull(message = "Калорийность на 100г обязательна")

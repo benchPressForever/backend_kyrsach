@@ -3,6 +3,7 @@ package com.example.back_healthy_food_app.Recommendation.controller;
 
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationRequest;
 import com.example.back_healthy_food_app.Recommendation.dto.RecommendationResponse;
+import com.example.back_healthy_food_app.Recommendation.dto.UpdateDtoRecommandation;
 import com.example.back_healthy_food_app.Recommendation.service.RecommendationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,7 @@ public class RecommendationController {
 
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RecommendationResponse update(@PathVariable String id,@Valid @RequestBody RecommendationRequest dto){
+    public RecommendationResponse update(@PathVariable String id,@Valid @RequestBody UpdateDtoRecommandation dto){
         return recommendationService.update(id,dto);
     }
 }

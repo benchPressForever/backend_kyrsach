@@ -8,10 +8,13 @@ import com.example.back_healthy_food_app.daily_stat.storage.DailyRepository;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
 import com.example.back_healthy_food_app.errors.DailyStatNotFoundException;
 import com.example.back_healthy_food_app.errors.MealNotFoundException;
+import com.example.back_healthy_food_app.meal.service.MealService;
 import com.example.back_healthy_food_app.user.service.UserService;
 import com.example.back_healthy_food_app.user.storage.UserEntity;
 import com.example.back_healthy_food_app.user.storage.UserRepository;
 import org.springframework.stereotype.Service;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
 
 import java.time.LocalDate;
 
@@ -21,15 +24,17 @@ public class DailyStatService implements IDailyStatService {
     private final DailyRepository repository;
     private final UserService userService;
 
-    public DailyStatService(DailyRepository repository, UserRepository userRepository, UserService userService) {
+    public DailyStatService(DailyRepository repository, UserService userService) {
         this.repository = repository;
         this.userService = userService;
     }
 
     @Override
     public DailyStatResponse getByDate(String userId, GetDtoDailyStat dto) {
-        return repository.findByDateAndUserId(userId,dto.getDate()).map(DailyStatEntity::asDailyStat)
-                .orElseThrow(() -> new DailyStatNotFoundException(dto.getDate().toString()));
+        return repository
+                .findAllByUserIdAndDate(userId,dto.getDate())
+                .map(DailyStatEntity::asDailyStat)
+                .orElseThrow(() -> new DailyStatNotFoundException(userId));
     }
 
     @Override
@@ -57,9 +62,15 @@ public class DailyStatService implements IDailyStatService {
             DailyStatEntity dailyEntity = repository.findById(id)
                     .orElseThrow(() -> new DailyStatNotFoundException(id));
 
-            dailyEntity.setWeight(dto.getWeight());
-            dailyEntity.setHeight(dto.getHeight());
-            dailyEntity.setMealsCount(dto.getMealsCount());
+            if(dto.getHeight() != null){
+                dailyEntity.setHeight(dto.getHeight());
+            }
+            if(dto.getWeight() != null){
+                dailyEntity.setWeight(dto.getWeight());
+            }
+            if(dto.getMealsCount() != null){
+                dailyEntity.setMealsCount(dto.getMealsCount());
+            }
 
             return repository.save(dailyEntity).asDailyStat();
     }

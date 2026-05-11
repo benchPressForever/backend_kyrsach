@@ -2,6 +2,7 @@ package com.example.back_healthy_food_app.food.service;
 
 import com.example.back_healthy_food_app.food.dto.Food;
 import com.example.back_healthy_food_app.food.dto.FoodGetDto;
+import com.example.back_healthy_food_app.food.dto.UpdateDtoFood;
 import com.example.back_healthy_food_app.food.storage.FoodDBEntity;
 import jakarta.persistence.Entity;
 
@@ -23,7 +24,7 @@ public interface IFoodService {
     Food insert(Food food);
 
     //update - обновление по id
-    Food update(String id,Food food);
+    Food update(String id, UpdateDtoFood food);
 
     //delete - удаление по id
     void delete(String id);
