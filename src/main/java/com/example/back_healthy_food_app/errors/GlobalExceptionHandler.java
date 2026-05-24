@@ -7,7 +7,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler {
     }
 
     // 409 - Conflict
-    @ExceptionHandler({EmailAlreadyExistsException.class})
+    @ExceptionHandler({EmailAlreadyExistsException.class,DailyAlreadyExistsException.class})
     public ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.CONFLICT.value(),
@@ -53,4 +52,6 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+
+
 }

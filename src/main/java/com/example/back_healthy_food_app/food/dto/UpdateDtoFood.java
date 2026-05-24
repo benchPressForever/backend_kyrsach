@@ -14,14 +14,14 @@ public class UpdateDtoFood {
     private String name;
 
     @PositiveOrZero(message = "Калорийность не может быть отрицательной")
-    private Double caloriesPer100;
+    private Float caloriesPer100;
 
     @PositiveOrZero(message = "Количество белков не может быть отрицательным")
-    private Double proteinPer100;
+    private Float proteinPer100;
 
     @PositiveOrZero(message = "Количество жиров не может быть отрицательным")
-    private Double fatPer100;
+    private Float fatPer100;
 
     @PositiveOrZero(message = "Количество углеводов не может быть отрицательным")
-    private Double carbsPer100;
+    private Float carbsPer100;
 }

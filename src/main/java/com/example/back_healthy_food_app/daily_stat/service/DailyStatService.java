@@ -6,6 +6,7 @@ import com.example.back_healthy_food_app.daily_stat.dto.GetDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.dto.UpdateDtoDailyStat;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyRepository;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
+import com.example.back_healthy_food_app.errors.DailyAlreadyExistsException;
 import com.example.back_healthy_food_app.errors.DailyStatNotFoundException;
 import com.example.back_healthy_food_app.errors.MealNotFoundException;
 import com.example.back_healthy_food_app.meal.service.MealService;
@@ -50,6 +51,11 @@ public class DailyStatService implements IDailyStatService {
 
     @Override
     public DailyStatResponse create(DailyStatRequest request,String userId) {
+
+        if(repository.existsByUserIdAndDate(userId,request.getDate())){
+            throw new DailyAlreadyExistsException(request.getDate());
+        }
+
         UserEntity user = userService.getEntityById(userId);
 
         DailyStatEntity dailyEntity = new DailyStatEntity(request,user);

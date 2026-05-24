@@ -6,6 +6,7 @@ import com.example.back_healthy_food_app.meal.dto.UpdateDtoMeal;
 import com.example.back_healthy_food_app.meal.service.MealService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

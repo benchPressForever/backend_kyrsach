@@ -13,12 +13,5 @@ public interface DailyRepository extends JpaRepository<DailyStatEntity,String> {
 
     Optional<DailyStatEntity> findAllByUserIdAndDate(String userId, LocalDate date);
 
-    /*
-    @Query("SELECT ds FROM DailyStatEntity ds " +
-            "LEFT JOIN FETCH ds.meals m " +  // только один FETCH для коллекции
-            "WHERE ds.user.id = :userId AND ds.date = :date")
-    Optional<DailyStatEntity> findByUserIdAndDateWithAllData(@Param("userId") String userId,
-                                                             @Param("date") LocalDate date);*/
-
-
+    boolean existsByUserIdAndDate(String userId, LocalDate date);
 }

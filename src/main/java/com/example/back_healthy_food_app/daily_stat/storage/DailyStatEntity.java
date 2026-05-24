@@ -13,7 +13,11 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="daily_stat")
+@Table(name = "daily_stat",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uk_user_date",
+                        columnNames = {"user_id", "date"})
+        })
 public class DailyStatEntity {
 
     @Id

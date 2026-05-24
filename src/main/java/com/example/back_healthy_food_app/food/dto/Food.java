@@ -15,24 +15,24 @@ public class Food {
 
     @NotNull(message = "Калорийность на 100г обязательна")
     @PositiveOrZero(message = "Калорийность не может быть отрицательной")
-    private Double caloriesPer100;
+    private Float caloriesPer100;
 
     @NotNull(message = "Белки на 100г обязательны")
     @PositiveOrZero(message = "Количество белков не может быть отрицательным")
-    private Double proteinPer100;
+    private Float proteinPer100;
 
     @NotNull(message = "Жиры на 100г обязательны")
     @PositiveOrZero(message = "Количество жиров не может быть отрицательным")
-    private Double fatPer100;
+    private Float fatPer100;
 
     @NotNull(message = "Углеводы на 100г обязательны")
     @PositiveOrZero(message = "Количество углеводов не может быть отрицательным")
-    private Double carbsPer100;
+    private Float carbsPer100;
 
     public Food() {}
 
-    public Food(String id,String name, Double caloriesPer100, Double proteinPer100,
-                Double fatPer100, Double carbsPer100) {
+    public Food(String id,String name, Float caloriesPer100, Float proteinPer100,
+                Float fatPer100, Float carbsPer100) {
         this.name = name;
         this.caloriesPer100 = caloriesPer100;
         this.proteinPer100 = proteinPer100;

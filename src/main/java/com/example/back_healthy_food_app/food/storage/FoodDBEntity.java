@@ -22,16 +22,16 @@ public class FoodDBEntity {
     private String name;
 
     @Column(name="calories_per_100",nullable = false, columnDefinition = "FLOAT DEFAULT 0.0")
-    private Double caloriesPer100;
+    private Float caloriesPer100;
 
     @Column(name="protein_per_100",nullable = false,columnDefinition = "FLOAT DEFAULT 0.0")
-    private Double proteinPer100;
+    private Float proteinPer100;
 
     @Column(name="fat_per_100",nullable = false ,columnDefinition = "FLOAT DEFAULT 0.0")
-    private Double fatPer100;
+    private Float fatPer100;
 
     @Column(name="carbs_per_100",nullable = false,columnDefinition = "FLOAT DEFAULT 0.0")
-    private Double carbsPer100;
+    private Float carbsPer100;
 
     @OneToMany(mappedBy = "food",
                 cascade = CascadeType.ALL,

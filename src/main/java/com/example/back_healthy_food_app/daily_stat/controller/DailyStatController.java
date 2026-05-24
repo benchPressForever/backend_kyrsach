@@ -31,7 +31,7 @@ public class DailyStatController {
 
     @GetMapping
     public DailyStatResponse getByDate(
-            @Valid @RequestBody GetDtoDailyStat dto,
+            @Valid @ModelAttribute GetDtoDailyStat dto,
             @AuthenticationPrincipal UserDetailsImpl currentUser){
         return service.getByDate(currentUser.getId(), dto);
     }

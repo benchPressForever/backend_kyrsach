@@ -9,15 +9,15 @@ import java.time.LocalDate;
 public class AuthResponse {
     private String id;
     private String email;
-    private String token;
+    private String accessToken;
     private Gender gender;
     private String name;
     private LocalDate birthDate;
 
-    public AuthResponse(UserEntity user,String token) {
+    public AuthResponse(UserEntity user,String accessToken) {
         this.id = user.getId();
         this.email = user.getEmail();
-        this.token = token;
+        this.accessToken = accessToken;
         this.gender = user.getGender();
         this.name = user.getName();
         this.birthDate = user.getBirthDate();
