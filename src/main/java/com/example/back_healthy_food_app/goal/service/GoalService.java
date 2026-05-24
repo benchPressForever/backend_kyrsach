@@ -5,7 +5,7 @@ import com.example.back_healthy_food_app.goal.dto.GoalResponse;
 import com.example.back_healthy_food_app.goal.dto.UpdateDtoGoal;
 import com.example.back_healthy_food_app.goal.storage.GoalEntity;
 import com.example.back_healthy_food_app.goal.storage.GoalRepository;
-import com.example.back_healthy_food_app.user.UserService;
+import com.example.back_healthy_food_app.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
