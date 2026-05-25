@@ -5,6 +5,7 @@ import com.example.back_healthy_food_app.goal.dto.GoalRequest;
 import com.example.back_healthy_food_app.goal.dto.GoalResponse;
 import com.example.back_healthy_food_app.goal.dto.TypeActivity;
 import com.example.back_healthy_food_app.goal.dto.TypeGoal;
+import com.example.back_healthy_food_app.user.storage.UserEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -37,15 +38,20 @@ public class GoalEntity {
     @Column(name = "type_activity", nullable = false)
     private TypeActivity typeActivity;
 
-    public GoalEntity(){};
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private UserEntity user;
 
-    public GoalEntity(GoalRequest request){
+    public GoalEntity() {}
+    public GoalEntity(GoalRequest request,UserEntity user){
         this.calories = 0.0f;
         this.protein = 0.0f;
         this.fat = 0.0f;
         this.carbs = 0.0f;
         this.mealsCount = request.getMealsCount();
+        this.user = user;
     };
+
     public GoalResponse asGoal() {
         return new GoalResponse(this);
 }

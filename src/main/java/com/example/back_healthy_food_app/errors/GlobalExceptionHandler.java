@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({UserNotFoundException.class, EmailNotFoundException.class,
             FoodNotFoundException.class, DailyStatNotFoundException.class,
             MealFoodNotFoundException.class, MealNotFoundException.class,
-            RecommendationNotFoundException.class})
+            RecommendationNotFoundException.class, GoalNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleNotFound(RuntimeException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
