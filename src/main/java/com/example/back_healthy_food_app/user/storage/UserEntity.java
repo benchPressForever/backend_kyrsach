@@ -2,6 +2,7 @@ package com.example.back_healthy_food_app.user.storage;
 
 import com.example.back_healthy_food_app.auth.dto.Gender;
 import com.example.back_healthy_food_app.daily_stat.storage.DailyStatEntity;
+import com.example.back_healthy_food_app.goal.storage.GoalEntity;
 import com.example.back_healthy_food_app.meal.storage.MealEntity;
 import com.example.back_healthy_food_app.user.dto.UserResponse;
 import jakarta.persistence.*;
@@ -39,6 +40,9 @@ public class UserEntity {
             fetch = FetchType.LAZY,
             orphanRemoval = true)
     private List<DailyStatEntity> dailyStats = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private GoalEntity goal;
 
     public UserEntity() {}
 
