@@ -70,7 +70,7 @@ public class UserService implements UserDetailsService, IUserService {
         }
         if(dto.getPassword() != null) {user.setPassword(encoder.encode(dto.getPassword()));}
         if(dto.getGender() != null) {user.setGender(dto.getGender());}
-        if(dto.getBirthDate() != null) {user.setBirthDate(dto.getBirthDate());}
+        if(dto.getAge() != null) {user.setAge(dto.getAge());}
         return repository.save(user).asUserResponse();
     }
 }

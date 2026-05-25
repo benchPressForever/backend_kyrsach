@@ -1,9 +1,7 @@
 package com.example.back_healthy_food_app.user.dto;
 
 import com.example.back_healthy_food_app.auth.dto.Gender;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -22,6 +20,7 @@ public class UpdateDtoUser {
 
     private Gender gender;
 
-    @Past(message = "Дата рождения не может быть в будущем")
-    private LocalDate birthDate;
+    @Min(value = 6, message = "Возраст не может быть меньше 6")
+    @Max(value = 110, message = "Возраст не может быть больше 110")
+    private Integer age;
 }

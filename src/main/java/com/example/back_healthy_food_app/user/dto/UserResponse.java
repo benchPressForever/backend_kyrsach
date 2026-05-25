@@ -11,14 +11,14 @@ public class UserResponse {
     private String id;
     private String name;
     private String email;
-    private LocalDate birthDate;
+    private Integer age;
     private Gender gender;
 
     public UserResponse(UserEntity user){
         id = user.getId();
         name = user.getName();
         email = user.getEmail();
-        birthDate = user.getBirthDate();
+        age = user.getAge();
         gender = user.getGender();
     }
 }

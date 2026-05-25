@@ -29,7 +29,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    private LocalDate birthDate;
+    private Integer age;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -42,11 +42,11 @@ public class UserEntity {
 
     public UserEntity() {}
 
-    public UserEntity(String name, String email, String password, LocalDate birthDate, Gender gender) {
+    public UserEntity(String name, String email, String password, Integer age, Gender gender) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.birthDate = birthDate;
+        this.age = age;
         this.gender = gender;
     }
 

@@ -24,6 +24,7 @@ public class SignupRequest {
     @NotNull(message = "Gender обязателен")
     private Gender gender;
 
-    @Past(message = "Дата рождения не может быть в будущем")
-    private LocalDate birthDate;
+    @Min(value = 6, message = "Возраст не может быть меньше 6")
+    @Max(value = 110, message = "Возраст не может быть больше 110")
+    private Integer age;
 }

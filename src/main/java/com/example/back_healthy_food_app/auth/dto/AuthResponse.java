@@ -12,7 +12,7 @@ public class AuthResponse {
     private String accessToken;
     private Gender gender;
     private String name;
-    private LocalDate birthDate;
+    private Integer age;
 
     public AuthResponse(UserEntity user,String accessToken) {
         this.id = user.getId();
@@ -20,6 +20,6 @@ public class AuthResponse {
         this.accessToken = accessToken;
         this.gender = user.getGender();
         this.name = user.getName();
-        this.birthDate = user.getBirthDate();
+        this.age = user.getAge();
     }
 }

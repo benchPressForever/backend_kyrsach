@@ -13,7 +13,7 @@ public class GoalRequest {
 
     private String height;
     private String weight;
-    private Date age;
+    private Integer age;
 
     @DecimalMin(value = "0", message = "Количество приемов пищи должно быть >= 0")
     private Integer mealsCount;
@@ -30,7 +30,7 @@ public class GoalRequest {
     public GoalRequest(){}
 
     public GoalRequest(Integer mealsCount,TypeGoal typeGoal,TypeActivity typeActivity,
-                       Gender gender, String height, String weight, Date age){
+                       Gender gender, String height, String weight, Integer age){
         this.mealsCount = mealsCount;
         this.typeGoal = typeGoal;
         this.typeActivity = typeActivity;

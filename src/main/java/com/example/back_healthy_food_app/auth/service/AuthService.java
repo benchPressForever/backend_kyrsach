@@ -40,7 +40,7 @@ public class AuthService implements IAuthService{
         userEntity.setName(request.getName());
         userEntity.setEmail(request.getEmail());
         userEntity.setGender(request.getGender());
-        userEntity.setBirthDate(request.getBirthDate());
+        userEntity.setAge(request.getAge());
         String hashed = passwordEncoder.encode(request.getPassword());
         userEntity.setPassword(hashed);
 
