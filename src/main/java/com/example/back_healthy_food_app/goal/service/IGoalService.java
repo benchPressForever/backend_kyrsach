@@ -11,7 +11,7 @@ public interface IGoalService {
 
     GoalResponse get(String id);
 
-    GoalResponse recalculate(String id, GoalRequest dto);
+    GoalResponse recalculate(String userId, GoalRequest dto);
 
 
     GoalResponse update(String id, UpdateDtoGoal dto);

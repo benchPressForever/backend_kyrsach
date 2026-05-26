@@ -28,13 +28,14 @@ public class GoalService implements  IGoalService {
     }
 
     @Override
-    public GoalResponse create(String id, GoalRequest  dto) {
-        UserEntity user = userService.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+    public GoalResponse create(String userId, GoalRequest  dto) {
+        UserEntity user = userService.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
 
         GoalEntity goal = new GoalEntity(dto,user);
+        repository.save(goal).asGoal();
 
-        return repository.save(goal).asGoal();
+        return this.recalculate(userId,dto);
     }
 
     @Override
@@ -55,9 +56,9 @@ public class GoalService implements  IGoalService {
                 orElseThrow(() -> new GoalNotFoundException(userId));
     }
 
-    public GoalResponse recalculate(String id, GoalRequest dto) {
-        GoalEntity goal = repository.getByUserId(id)
-                .orElseThrow(() -> new GoalNotFoundException(id));
+    public GoalResponse recalculate(String userId, GoalRequest dto) {
+        GoalEntity goal = repository.getByUserId(userId)
+                .orElseThrow(() -> new GoalNotFoundException(userId));
         Map<String, Object> calculated = calculateBJU(dto);
 
         goal.setCalories((Float) calculated.get("calories"));
@@ -74,8 +75,8 @@ public class GoalService implements  IGoalService {
     private Map<String, Object> calculateBJU(GoalRequest dto) {
         Map<String, Object> result = new HashMap<>();
         // Расчет BMR по Миффлину-Сан Жеора
-        double weight = Double.parseDouble(dto.getWeight());
-        double height = Double.parseDouble(dto.getHeight());
+        double weight = dto.getWeight();
+        double height = dto.getHeight();
 
         double bmr = (10 * weight) + (6.25 * height) - (5 * dto.getAge());
         bmr += (dto.getGender() == Gender.MALE) ? 5 : -161;
